@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 08 Mars 2017 à 14:06
+-- Généré le :  Mer 08 Mars 2017 à 14:14
 -- Version du serveur :  5.6.33
 -- Version de PHP :  7.0.12
 
@@ -13,6 +13,145 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `mmi_quizz`
 --
+CREATE DATABASE IF NOT EXISTS `mmi_quizz` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mmi_quizz`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Développement web'),
+(2, 'Graphisme'),
+(3, 'Audiovisuel');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `iut`
+--
+
+CREATE TABLE `iut` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `location` varchar(500) NOT NULL,
+  `coordinates` varchar(255) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `iut`
+--
+
+INSERT INTO `iut` (`id`, `name`, `location`, `coordinates`, `score`) VALUES
+(1, 'IUT de Champs-Sur-Marne', '2 Rue Albert Einstein, 77420 Champs-sur-Marne', '[48.8370221, 2.5847406999999976]', 0),
+(2, 'IUT d\'Allier', '1 avenue des célestins, 03200 Vichy', '[46.1190308, 3.42490250000003]', 0),
+(3, 'IUT de Troyes', '9 rue de Québec, 10026 Troyes', '[48.2683218, 4.079674599999976]', 0),
+(4, 'IUT d’Aix Marseille', '2 rue Raoul Follereau, 13637 Arles', '[43.6723587, 4.639763000000016]', 0),
+(5, 'IUT d\'Angoulême', '4 avenue de Varsovie, 16000 Angoulême', '[45.6487759, 0.14047319999997399]', 0),
+(6, 'IUT de Corse', 'Quartier Grossetti, 20250 Corte', '[42.301373, 9.158908999999994]', 0),
+(7, 'IUT de Dijon', '5 Boulevard Dr Petitjean, 21000 Dijon', '[47.3110404, 5.068396699999994]', 0),
+(8, 'IUT de Montbéliard', '4 place Tharradin, 25200 Montbéliard', '[47.49553479999999, 6.805264999999963]', 0),
+(9, 'IUT de Bordeaux Montaigne\r\n', '1 rue Jacques Ellul, place Renaudel, 33080 Bordeaux', '[44.830625, -0.5621267999999873]', 0),
+(10, 'IUT de Béziers', '3 place du 14 juillet, 34505 Béziers', '[43.3465791, 3.222162600000047]', 0),
+(11, 'IUT de Blois', '15 Rue de la Chocolaterie, 41000 Blois', '[47.5836213, 1.3242509000000382]', 0),
+(12, 'IUT de Grenoble Alpes', '151 rue de la Papeterie, 38 402 Saint-Martin-D\'Hères', '[45.199518, 5.774710000000027]', 0),
+(13, 'IUT de Clermond-Ferrand', '8 rue Jean-Baptiste Fabre, 43009 Le Puy-en-Velay', '[45.0401804, 3.8813774000000194]', 0),
+(14, 'IUT Cherbourg-Manche', '20 Rue de l\'exode, 50000 Saint-Lô', '[49.110714, -1.0900994999999511]', 0),
+(15, 'IUT de Laval', '52 rue des Docteurs Calmette et Guérin, 53000 Laval', '[48.085762, -0.7570580000000291]', 0),
+(16, 'IUT de Nancy-Charlemagne', '2 ter boulevard Charlemagne, 54052 Nancy', '[48.6824164, 6.161771300000055]', 0),
+(17, 'IUT de Lens', 'Rue de l\'Université, 62307 Lens', '[50.437776, 2.8100875000000087]', 0),
+(18, 'IUT de Tarbes', '57 Avenue d\'Azereix, 65000 Tarbes', '[43.22296499999999, 0.04913609999994151]', 0),
+(19, 'IUT de Haguenau', '30 Rue du Maire André Traband, 67500 Haguenau\r\n', '[48.81649069999999, 7.786105099999986]', 0),
+(20, 'IUT de Mulhouse', '61 Rue Albert Camus, 68200 Mulhouse', '[47.73165189999999, 7.300021900000047]', 0),
+(21, 'IUT de Meaux', '17 rue Jablinot, 77100 Meaux', '[48.95509200000001, 2.878238300000021]', 0),
+(22, 'IUT de Chambery', '28 avenue du lac d\'Annecy, 73370 Le Bourget-du-Lac', '[45.6423347, 5.870946900000035]', 0),
+(23, 'IUT d\'Elbeuf', '24 Cours Gambetta, 76500 Elbeuf', '[49.2848526, 1.005471899999975]', 0),
+(24, 'IUT de Vélizy', '10/12 avenue de l\'Europe, 78140 Vélizy', '[48.7819122, 2.2176942999999483]', 0),
+(25, 'IUT de Toulon', '70 avenue Roger Devoucoux, 83000 Toulon', '[43.12112080000001, 5.93989769999996]', 0),
+(26, 'IUT de Limousin', '12 Allée André Maurois, 87065 Limoge', '[45.83568349999999, 1.2297634000000244]', 0),
+(27, 'IUT de Saint-Dié-des-Vosges', '11 Rue de l\'Université, 88100 Saint-Dié-des-Vosges', '[48.2901105, 6.942051799999945]', 0),
+(28, 'IUT de Bobigny', '1 Rue de Chablis, 93000 Bobigny', '[48.9148297, 2.4177062999999634]', 0),
+(29, 'IUT de Sarcelles', '34 Bis Boulevard Henri Bergson, 95200 Sarcelles', '[48.9746743, 2.3764737000000196]', 0),
+(30, 'IUT de Saint-Claude', '166 rue des Officiers, 97120 Saint-Claude', '[16.028631, -61.69592990000001]', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `level`
+--
+
+CREATE TABLE `level` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `level`
+--
+
+INSERT INTO `level` (`id`, `name`) VALUES
+(1, 'Facile'),
+(2, 'Moyen'),
+(3, 'Difficile');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `question`
+--
+
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL,
+  `name` varchar(500) NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `question`
+--
+
+INSERT INTO `question` (`id`, `name`, `img`, `category_id`, `level_id`) VALUES
+(1, 'Que signifie HTML ?', NULL, 1, 1),
+(2, 'Qui est le fondateur d\'HTML ?', NULL, 1, 1),
+(3, 'À quoi sert la balise <br> ?', NULL, 1, 1),
+(4, 'Que signifie CSS ?', NULL, 1, 1),
+(5, 'Avec quelle propriété CSS peut-on arrondir les coins d\'un bloc HTML ?', NULL, 1, 1),
+(6, 'Où est-il préférable d\'écrire du CSS ? ', NULL, 1, 1),
+(7, 'Qu\'est-ce qu\'un array en PHP ?', NULL, 1, 1),
+(8, 'Quelle code affichera correctement "Coucou" ?', NULL, 1, 1),
+(9, 'JavaScript est un langage....', NULL, 1, 1),
+(10, 'Qu\'est ce que la POO ?', NULL, 1, 1),
+(11, 'Quelle est la version actuelle d\'HTML ?', NULL, 1, 2),
+(12, 'Qu\'est ce qu\'Ajax ? ', NULL, 1, 2),
+(13, 'En SEO, que signifie RSS ?', NULL, 1, 2),
+(14, 'En SEO, qu\'est ce qu\'un Backlink ?', NULL, 1, 2),
+(15, 'Qu\'est ce qu\'un script asynchrone ? ', NULL, 1, 2),
+(16, 'Bootstrap est..', NULL, 1, 2),
+(17, 'Avec Bootstrap, quel préfixe permet de gérer l\'affichage sur un écran de 998px de large ?', NULL, 1, 2),
+(18, 'A quoi sert un framework ?', NULL, 1, 2),
+(19, 'Que signigie MVC ?', NULL, 1, 2),
+(20, 'En CSS, laquelle de ces propositions n\'est pas une valeur de la propriété "display" ?', NULL, 1, 2),
+(21, 'Peut-on remplacer l\'extension .html par .htm pour un fichier HTML ?', NULL, 1, 3),
+(22, 'Quelle fonction en PHP permet d\'obtenir la date de création et la date de modification d\'un fichier ?', NULL, 1, 3),
+(23, 'Dans le DOM-2, quelle est la bonne méthode qui permet l\'ajout de gestionnaires d\'évènements', NULL, 1, 3),
+(24, 'Dans quel ordre de priorité sont affectées les variables envoyées par HTTP ?', NULL, 1, 3),
+(25, 'Une base de donnée est dite cohérente si...', NULL, 1, 3),
+(26, 'Qu\'est-ce qu\'un SSO ? ', NULL, 1, 3),
+(27, 'En CSS, comment mettre du style uniquement sur les éléments qui sont juste après les éléments ?', NULL, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -142,9 +281,48 @@ INSERT INTO `response` (`id`, `name`, `img`, `correct`, `question_id`) VALUES
 (112, 'h2 + p', NULL, 1, 27),
 (113, 'h2 < p', NULL, 0, 27);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `login` varchar(45) NOT NULL,
+  `score` int(11) NOT NULL,
+  `iut_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables exportées
 --
+
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `iut`
+--
+ALTER TABLE `iut`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `level`
+--
+ALTER TABLE `level`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `level_id` (`level_id`);
 
 --
 -- Index pour la table `response`
@@ -154,20 +332,65 @@ ALTER TABLE `response`
   ADD KEY `category_id` (`question_id`);
 
 --
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `iut_id` (`iut_id`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `iut`
+--
+ALTER TABLE `iut`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT pour la table `level`
+--
+ALTER TABLE `level`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `question`
+--
+ALTER TABLE `question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT pour la table `response`
 --
 ALTER TABLE `response`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 --
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `question`
+--
+ALTER TABLE `question`
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_ibfk_2` FOREIGN KEY (`level_id`) REFERENCES `level` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `response`
 --
 ALTER TABLE `response`
   ADD CONSTRAINT `response_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`iut_id`) REFERENCES `iut` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
