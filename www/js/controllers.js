@@ -1,28 +1,21 @@
-angular.module('starter.controllers', 'starter', [])
+angular.module('starter.controllers', [])
 
-.controller('MapCtrl', function($scope, $stateParams) {
+// .controller('MapCtrl', function($scope, $stateParams) {
+// })
+.controller('AppCtrl', function($scope, $stateParams, $state) {
 })
-
-.controller('HomeCtrl', function($scope, $http) {
-  $http({
-      method: 'GET',
-      url: '../process/api.php'
-  }).then(function successCallback(response){
-      $scope.questions = response.data;
-  });
+.controller('QuestionCtrl', function($scope, $http) {
+    $scope.questions;
+    $scope.getQuestion = function() {
+        $http({
+            method: 'GET',
+            url: '../process/api.php'
+        }).then(function successCallback(response){
+            console.log(response.data);
+            $scope.questions = response.data;
+        }, function (response){
+            console.log(response.data, response.status);
+        });
+    }
+    $scope.getQuestion();
 });
-
-// .controller('HomeCtrl', function($scope, $http) {
-//     $scope.questions;
-//     $scope.getQuestion = function() {
-//         $http({
-//             method: 'GET',
-//             url: '../process/api.php'
-//         }).then(function successCallback(response){
-//             $scope.questions = response.data;
-//         }, function (response){
-//             console.log(response.data, response.status);
-//         });
-//     }
-//     $scope.getQuestion();
-// });

@@ -18,7 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
 
@@ -42,26 +42,14 @@
     <script src="lib/ngmap/build/scripts/ng-map.min.js"></script>
 
   </head>
-    <body ng-app="starter">
-        <a href="#/app/map">map</a>
-        <ion-nav-view></ion-nav-view>
-      </body>
   <body ng-app="starter">
-
     <ion-pane>
+      <ion-nav-view></ion-nav-view>
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
       <ion-content>
-        <ion-list>
-             <ion-item ng-repeat="question in questions" ng-controller="HomeCtrl">
-               {{question.id}}
-             </ion-item>
-        </ion-list>
-        <!-- <div ng-controller="HomeCtrl" class="bdd">
-            {{question.id}}
-        </div> -->
-        <a href="/templates/map.html">saluuuuut</a>
+        <a href="#/app/questions">Questions</a>
       </ion-content>
     </ion-pane>
 

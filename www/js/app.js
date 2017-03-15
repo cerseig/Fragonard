@@ -27,20 +27,15 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directive','n
     .state('app', {
       url: '/app',
       abtract: true,
-
-          templateUrl: 'templates/index.html'
-    })
-    .state('app.map', {
-      url: '/map',
-          templateUrl: 'templates/map.html'
+      templateUrl: 'index.html',
+      controller: 'AppCtrl'
     })
     .state('app.questions', {
-    url: '/home',
-    views: {
-        templateUrl: 'index.html',
-        controller: 'HomeCtrl'
-        }
+    url: '/questions',
+    templateUrl: 'templates/questions.html',
+    controller: 'QuestionCtrl'
     });
+    
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app');
 });
