@@ -6,5 +6,4 @@ ini_set('display_errors',1);
     } catch(PDOException $e){
       echo 'Echec lors de la connection'. $e->getMessage();
     }
-
 ?>

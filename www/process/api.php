@@ -1,18 +1,20 @@
 <?php
 
+header("Access-Control-Allow-Origin:*");
 include 'dbconnect.php';
 
-    $sql = "SELECT * FROM question";
-    $request = mysqli_query($db, $sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($db));
-    $questions = array();
-
-    $i = 0;
-    while($row = mysqli_fetch_row($request)) {
-        $questions[$i]['id'] = $row['id'];
-        $questions[$i]['name'] = $row['name'];
-
-        $i++;
+    $request = $db->query('SELECT * FROM question');
+    try {
+      $questions = array();
+      while ($data = $request->fetch(PDO::FETCH_ASSOC))
+      {
+	      $questions[] = $data;
+      }
+    }
+    catch (PDOException $e){
+      echo $e->getMessage();
     }
 
     echo json_encode($questions);
+
  ?>
