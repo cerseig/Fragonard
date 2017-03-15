@@ -17,7 +17,10 @@
     </script>-->
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -37,17 +40,10 @@
     <!-- pour la carte -->
     <script src="http://maps.google.com/maps/api/js"></script>
     <script src="lib/ngmap/build/scripts/ng-map.min.js"></script>
-    
-  </head>
-  <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-        <a href="/templates/map.html">saluuuuut</a>
-      </ion-content>
-    </ion-pane>
-  </body>
+  </head>
+    <body ng-app="starter">
+        <a href="#/app/map">map</a>
+        <ion-nav-view></ion-nav-view>
+      </body>
 </html>
