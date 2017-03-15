@@ -34,6 +34,13 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directive','n
       url: '/map',
           templateUrl: 'templates/map.html'
     })
+    .state('app.questions', {
+    url: '/home',
+    views: {
+        templateUrl: 'index.html',
+        controller: 'HomeCtrl'
+        }
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app');
 });
