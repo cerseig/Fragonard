@@ -24,12 +24,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directive','n
 })
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('app.map', {
-      url: '/map',
-      views: {
-          templateUrl: 'templates/map.html'
-      }
-    })
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'index.html'
+  })
+  .state('app.map', {
+    url: '/map',
+    templateUrl: 'templates/map.html',
+    controller: 'MapCtrl'
+  })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/index.html');
+  $urlRouterProvider.otherwise('/app');
 });
