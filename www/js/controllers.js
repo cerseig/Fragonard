@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
     // $scope.questions = {} ;
         $http({
             method: 'GET',
-            url: 'http://localhost:8888/process/api.php'
+            url: 'http://localhost/process/api.php'
         }).then(function successCallback(response){
             console.log(response.data);
             $scope.questions = response.data;
