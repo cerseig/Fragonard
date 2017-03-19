@@ -2,28 +2,15 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $stateParams, $state) {
 })
-<<<<<<< HEAD
-.controller('QuestionCtrl', function($scope, $http) {
-    // $scope.questions = {} ;
-        $http({
-            method: 'GET',
-            url: 'http://localhost/process/api.php'
-        }).then(function successCallback(response){
-            console.log(response.data);
-            $scope.questions = response.data;
-        }, function myError(response){
-            console.log(response.data, response.status);
-        });
-});
-=======
 
 .controller('CategoriesCtrl', function($scope, $http, $state, $location) {
   //Displays all the categories
   $http({
       method: 'GET',
-      url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
+      url: 'http://127.0.0.1/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php'
   }).then(function successCallback(response){
       $scope.categories = response.data;
+      console.log('coucou');
   }, function myError(response){
       console.log(response.data, response.status);
   });
@@ -38,7 +25,7 @@ angular.module('starter.controllers', [])
   var categoryId = $stateParams.categoryId;
   $http({
       method: 'GET',
-      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
+      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
   }).then(function successCallback(response){
       $scope.levels = response.data;
   }, function myError(response){
@@ -57,7 +44,7 @@ angular.module('starter.controllers', [])
     //Gets the first question
     $http({
         method: 'GET',
-        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
+        url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
     }).then(function successCallback(response){
         $scope.question = response.data;
         questionId = $scope.question.id;
@@ -73,7 +60,7 @@ angular.module('starter.controllers', [])
       //Gets the questionId
       $http({
           method: 'GET',
-          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
+          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
       }).then(function successCallback(response){
           $scope.question = response.data;
           $scope.getAnswers(questionId);
@@ -86,7 +73,7 @@ angular.module('starter.controllers', [])
     $scope.getAnswers = function (questionId){
       $http({
           method: 'GET',
-          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?question='+questionId
+          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?question='+questionId
       }).then(function successCallback(response){
           $scope.answers = response.data;
       }, function myError(response){
@@ -98,7 +85,7 @@ angular.module('starter.controllers', [])
     $scope.checkAnswer = function (correct, id) {
       console.log(id);
       if (correct == 1){
-        $scope.correct = "bonne réponse !";
+        $scope.getNextQuestion(questionId);
       }
       else {
         $scope.correct = "mauvaise réponse!";
@@ -110,4 +97,3 @@ angular.module('starter.controllers', [])
     }
 })
 ;
->>>>>>> f6e7f5d987bbf4c2d5ea7e87fa46c8b31f52f9a8

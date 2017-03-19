@@ -1,19 +1,14 @@
 <ion-view view-title="Questions">
-  <ion-content>
+  <ion-content class="questions">
     <ion-list>
-<<<<<<< HEAD
-      <ion-item ng-repeat="question in questions">
-        {{question}}
-=======
       <ion-item>
-        {{question.name}}
+        <h2>{{question.name}}</h2>
         {{question.img}}
         <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)">
           {{answer.name}}
           {{answer.img}}
         </ion-item>
           {{correct}}
->>>>>>> f6e7f5d987bbf4c2d5ea7e87fa46c8b31f52f9a8
       </ion-item>
       <button type="button" name="button" ng-click="getNextQuestion(question.id)">Suite</button>
     </ion-list>
