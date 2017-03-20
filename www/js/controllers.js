@@ -2,12 +2,43 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $stateParams, $state) {
 })
+.controller('RegisterCtrl', function($scope, $http, $state, $location){
+  var userLogin = "", userIut;
+  $http({
+      method: 'GET',
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
+  }).then(function successCallback(response){
+      $scope.iuts = response.data;
+  }, function myError(response){
+      console.log(response.data, response.status);
+  });
 
+  $scope.registerProcess = function (){
+    $http({
+        method: 'GET',
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
+    }).then(function successCallback(response){
+        //si l'utilisateur n'est pas déjà pris
+        console.log(response);
+        if (response.data == "" || response.data == null){
+          console.log("ca marche pas");
+          userLogin = $scope.userLogin;
+          userIut   = $scope.userIut;
+          $state.go('app.categories', {userLogin : userLogin, userIut : userIut});
+        }
+        else {
+          $scope.error = response.data;
+        }
+    }, function myError(response){
+        console.log(response.data, response.status);
+    });
+  }
+})
 .controller('CategoriesCtrl', function($scope, $http, $state, $location) {
   //Displays all the categories
   $http({
       method: 'GET',
-      url: 'http://127.0.0.1/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php'
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?user='
   }).then(function successCallback(response){
       $scope.categories = response.data;
       console.log('coucou');
@@ -16,7 +47,7 @@ angular.module('starter.controllers', [])
   });
   //Goes to the template to select levels
   $scope.getLevels = function(id) {
-    $state.go('app.levels', {categoryId : id});
+    $state.go('app.levels', {categoryId : id}); //Envoyer l'id au controller & de app.levels
   }
 })
 
@@ -25,7 +56,7 @@ angular.module('starter.controllers', [])
   var categoryId = $stateParams.categoryId;
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
   }).then(function successCallback(response){
       $scope.levels = response.data;
   }, function myError(response){
@@ -44,7 +75,7 @@ angular.module('starter.controllers', [])
     //Gets the first question
     $http({
         method: 'GET',
-        url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
     }).then(function successCallback(response){
         $scope.question = response.data;
         questionId = $scope.question.id;
@@ -60,7 +91,7 @@ angular.module('starter.controllers', [])
       //Gets the questionId
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
       }).then(function successCallback(response){
           $scope.question = response.data;
           $scope.getAnswers(questionId);
@@ -73,7 +104,7 @@ angular.module('starter.controllers', [])
     $scope.getAnswers = function (questionId){
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?question='+questionId
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?question='+questionId
       }).then(function successCallback(response){
           $scope.answers = response.data;
       }, function myError(response){

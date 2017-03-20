@@ -30,6 +30,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directive', 
       templateUrl: 'index.html',
       controller: 'AppCtrl'
     })
+    .state('app.register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterCtrl'
+    })
     .state('app.categories', {
     url: '/categories',
     templateUrl: 'templates/category.html',
