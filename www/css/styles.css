@@ -49,6 +49,38 @@ ion-content.landing {
 }
 
 /* ----------------------------------------------------------*/
+/* -------------------- REGISTER PAGE ------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.register {
+    background-color: #3a99d8;
+}
+.register h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+.register .list label {
+    width: 100%;
+}
+.register .list button {
+    width: 100%;
+    padding: 15px 0;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background:none;
+    border: 1px solid #fefefe;
+    color: #fefefe;
+}
+.register .list button:hover, .register .list button:focus {
+    background-color: #fefefe;
+    color: black;
+}
+
+/* ----------------------------------------------------------*/
 /* -------------------- CATEGORIES PAGE ---------------------*/
 /* ----------------------------------------------------------*/
 ion-content.categories {
