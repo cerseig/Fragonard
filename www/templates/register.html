@@ -1,0 +1,26 @@
+<ion-view view-title="Inscription">
+    <ion-content class="register">
+        <div class="list" ng-controller="RegisterCtrl">
+            <h1>Inscription</h1>
+            <div class="content">
+                <label class="item item-input">
+                    <input type="text" placeholder="Login" ng-model="userLogin">
+                </label>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                      IUT
+                    </div>
+                    <select name="" ng-model="userIut" placeholder="Choisir...">
+                      <option value="{{iut.id}}" ng-repeat="iut in iuts" placeholder="Choisir...">{{iut.name}}</option>
+                    </select>
+                </label>
+                <div ng-if="error">
+                    <span>{{error}}</span>
+                </div>
+                <button ng-click="registerProcess()">
+                    C'est parti !
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

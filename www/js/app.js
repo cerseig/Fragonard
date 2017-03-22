@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers','starter.directive','ngMap'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directive', 'ui.router', 'ngMap'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,16 +30,40 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.directive','n
       templateUrl: 'index.html',
       controller: 'AppCtrl'
     })
+    .state('app.register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterCtrl'
+    })
+    .state('app.categories', {
+    url: '/categories',
+    templateUrl: 'templates/category.html',
+    controller: 'CategoriesCtrl'
+    })
+    .state('app.levels', {
+    url: '/levels/:categoryId',
+    templateUrl: 'templates/level.html',
+    controller: 'LevelsCtrl'
+    })
     .state('app.questions', {
-    url: '/questions',
+    url: '/questions/:levelId/:categoryId',
     templateUrl: 'templates/questions.html',
     controller: 'QuestionCtrl'
     })
+<<<<<<< HEAD
     .state('app.map', {
       url: '/map',
       templateUrl: 'templates/map.html',
       controller: 'MapCtrl'
     });
+=======
+    .state('app.result', {
+    url: '/result',
+    templateUrl: 'templates/result.html',
+    controller: 'QuestionCtrl'
+    })
+    ;
+>>>>>>> 5e5ace312e6d464c80e230e363a1961542b4c284
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app');
