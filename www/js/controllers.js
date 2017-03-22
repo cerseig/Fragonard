@@ -113,16 +113,17 @@ angular.module('starter.controllers', [])
 
     //Checks if the selected answer is the right one
     $scope.checkAnswer = function (correct, id) {
+
         console.log(id);
+
         if (correct == 1){
-            $scope.class='success';
+            $scope.
             $timeout(function () {
                 $scope.getNextQuestion(questionId);
                 animator.start();
             }, 1000);
         }
         else {
-            $scope.class='fail';
             $timeout(function () {
                 $scope.getNextQuestion(questionId);
             }, 1000);

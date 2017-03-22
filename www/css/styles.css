@@ -7,12 +7,6 @@ html, body {
     width: 100%;
     height: 100%;
 }
-.success {
-    background-color: green;
-}
-.fail {
-    background-color: red;
-}
 /* ----------------------------------------------------------*/
 /* -------------------- LANDING PAGE ------------------------*/
 /* ----------------------------------------------------------*/
@@ -227,4 +221,17 @@ ion-content.questions {
     text-align: center;
     position: relative;
     top: 25%;
+}
+
+/* ----------------------------------------------------------*/
+/* -------------------- RESULT PAGE -------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.results {
+    background-color: #f0c330;
+}
+.results h1 {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    text-align: center;
+    font-weight: bold;
 }
