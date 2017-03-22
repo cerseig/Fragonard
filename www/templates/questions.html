@@ -5,12 +5,11 @@
         <h2>{{question.name}}</h2>
         {{question.img}}
         <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer">
-          <p>{{answer.name}}</p>
+          <div class="break">{{answer.name}}</div>
           {{answer.img}}
         </ion-item>
           {{correct}}
       </ion-item>
-      <button type="button" name="button" ng-click="getNextQuestion(question.id)">Suite</button>
     </ion-list>
   </ion-content>
 </ion-view>
