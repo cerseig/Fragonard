@@ -105,7 +105,7 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
 
 //AFFICHAGE DES IUTS
 else {
-    $request = $db->query('SELECT * FROM iut ORDER BY score DESC');
+    $request = $db->query('SELECT * FROM iut');
     try {
       $iuts = array();
       while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
