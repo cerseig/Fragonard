@@ -50,20 +50,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directive', 
     templateUrl: 'templates/questions.html',
     controller: 'QuestionCtrl'
     })
-<<<<<<< HEAD
     .state('app.map', {
       url: '/map',
       templateUrl: 'templates/map.html',
       controller: 'MapCtrl'
-    });
-=======
+    })
     .state('app.result', {
     url: '/result',
     templateUrl: 'templates/result.html',
     controller: 'QuestionCtrl'
     })
     ;
->>>>>>> 5e5ace312e6d464c80e230e363a1961542b4c284
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app');
