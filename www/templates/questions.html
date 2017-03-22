@@ -4,8 +4,9 @@
       <ion-item>
         <h2>{{question.name}}</h2>
         {{question.img}}
-        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer">
+        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer" ng-class="{{class}}">
           <div class="break">{{answer.name}}</div>
+          {{class}}
           {{answer.img}}
         </ion-item>
           {{correct}}
