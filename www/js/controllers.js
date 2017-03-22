@@ -117,7 +117,6 @@ angular.module('starter.controllers', [])
         console.log(id);
 
         if (correct == 1){
-            $scope.
             $timeout(function () {
                 $scope.getNextQuestion(questionId);
                 animator.start();
