@@ -1,5 +1,11 @@
 <ion-view view-title="Résultat">
-  <ion-content>
-    <h1>Résultat</h1>
+  <ion-content class="resultat" ng-controller="RegisterCtrl">
+    <h1>Les résultats</h1>
+    <ion-list>
+        <ion-item ng-repeat="iut in iuts">
+            {{iut.name}}
+            {{iut.score}}
+        </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

@@ -50,8 +50,7 @@ angular.module('starter.controllers', [])
     $state.go('app.levels', {categoryId : id}); //Envoyer l'id au controller & de app.levels
   }
 })
-
-//Displays all the levels
+//Afficher les scores des IUT
 .controller('LevelsCtrl', function($scope, $http, $state, $stateParams, $timeout) {
   var categoryId = $stateParams.categoryId;
   $http({
@@ -126,5 +125,16 @@ angular.module('starter.controllers', [])
     $scope.stockScores = function(correct){
       scores += Number(levelId * correct);
     }
+})
+.controller('ResultCtrl', function($scope, $http, $state, $location){
+  var userScore = 0, iutScore;
+  $http({
+      method: 'GET',
+      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php'
+  }).then(function successCallback(response){
+      $scope.iuts = response.data;
+  }, function myError(response){
+      console.log(response.data, response.status);
+  });
 })
 ;
