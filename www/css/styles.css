@@ -185,12 +185,23 @@ ion-content.levels {
 /* -------------------- QUESTIONS PAGE ----------------------*/
 /* ----------------------------------------------------------*/
 ion-content.questions {
-    background-color: #3a99d8;
+    background-color: #35495d;
+}
+.questions ion-list {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: pre-line;
 }
 .questions h2 {
     text-align: center;
     font-family: 'Montserrat';
-    font-size: 20px;
+    font-size: 22px;
+    color: #ecf0f1;
+    margin-bottom: 50px;
+    white-space: pre-line;
 }
 .questions ion-item {
     border: none;
@@ -199,11 +210,16 @@ ion-content.questions {
 .questions ion-item.answer {
     margin: 2%;
     width: 46%;
+    height: 150px;
     font-family: 'Lato';
     background-color: #ecf0f1;
     float: left;
+    white-space: pre-line;
+    padding: 0;
+    box-shadow: 1px 1px 6px 0px #656565;
 }
-.questions ion-item.answer p {
-    width: 10em;
-    word-break: constante
+.questions ion-item.answer .break {
+    text-align: center;
+    position: relative;
+    top: 25%;
 }
