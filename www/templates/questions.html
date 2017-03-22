@@ -4,8 +4,8 @@
       <ion-item>
         <h2>{{question.name}}</h2>
         {{question.img}}
-        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" ng-style="answer.name === 0 && {'background-color': 'red'} || answer.name === 1 && {'background-color': 'green'} || answer.name === 2 && {'background-color': 'yellow'}">
-          {{answer.name}}
+        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer">
+          <p>{{answer.name}}</p>
           {{answer.img}}
         </ion-item>
           {{correct}}
