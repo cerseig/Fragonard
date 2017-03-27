@@ -30,30 +30,40 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directive', 
       templateUrl: 'index.html',
       controller: 'AppCtrl'
     })
+    .state('app.about', {
+    url: '/about',
+    templateUrl: 'templates/about.html',
+    controller: 'AboutCtrl'
+    })
     .state('app.register', {
     url: '/register',
     templateUrl: 'templates/register.html',
     controller: 'RegisterCtrl'
     })
     .state('app.categories', {
-    url: '/categories',
+    url: '/categories/:userLogin/:userIut',
     templateUrl: 'templates/category.html',
     controller: 'CategoriesCtrl'
     })
     .state('app.levels', {
-    url: '/levels/:categoryId',
+    url: '/levels/:categoryId/:userLogin/:userIut',
     templateUrl: 'templates/level.html',
     controller: 'LevelsCtrl'
     })
     .state('app.questions', {
-    url: '/questions/:levelId/:categoryId',
+    url: '/questions/:levelId/:categoryId/:userLogin/:userIut',
     templateUrl: 'templates/questions.html',
     controller: 'QuestionCtrl'
     })
     .state('app.result', {
-    url: '/result',
+    url: '/result/:userLogin/:userIut/:scores',
     templateUrl: 'templates/result.html',
-    controller: 'QuestionCtrl'
+    controller: 'ResultCtrl'
+    })
+    .state('app.results', {
+    url: '/results',
+    templateUrl: 'templates/results.html',
+    controller: 'ResultsCtrl'
     })
     ;
 

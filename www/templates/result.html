@@ -1,11 +1,7 @@
 <ion-view view-title="Résultat">
-  <ion-content class="results" ng-controller="RegisterCtrl">
-    <h1>Score</h1>
-    <ion-list>
-        <ion-item ng-repeat="iut in iuts">
-            {{iut.name}}
-            {{iut.score}}
-        </ion-item>
-    </ion-list>
+  <ion-content class="result" ng-controller="ResultCtrl">
+    <h1>Votre score</h1>
+        <h2>{{user.login}} : {{user.score}}/10</h2>
+    <a href="#/app/results">Suivant</a>
   </ion-content>
 </ion-view>

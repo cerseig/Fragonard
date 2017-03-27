@@ -4,8 +4,30 @@ header("Access-Control-Allow-Origin:* ");
 
 include 'dbconnect.php';
 
+if(isset($_GET['score']) && (isset($_GET['user'])) ) {
+    $request = $db->prepare('UPDATE user  SET score = :score WHERE login=:login');
+    $request->bindValue(':score', $_GET['score']);
+    $request->bindValue(':login', $_GET['user']);
+    $request->execute();
+
+    $request=$db->prepare('SELECT * FROM user WHERE login=:login');
+    $request->bindValue(':login', $_GET['user']);
+    $request->execute();
+
+    try {
+      $user = array();
+      while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
+        $user = $data;
+      }
+    }
+    catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+    echo json_encode($user);
+}
+
 //SÉLECTION DES QUESTIONS AU CAS PAR CAS
-if (isset($_GET['level']) && isset($_GET['category']) && isset($_GET['question'])) {
+else if (isset($_GET['level']) && isset($_GET['category']) && isset($_GET['question'])) {
   $request = $db->query('SELECT * FROM question WHERE id ='.$_GET['question'].' AND category_id = '.$_GET['category'].' AND level_id ='.$_GET['level'].' LIMIT 1');
   try {
     $question = array();
@@ -105,7 +127,7 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
 
 //AFFICHAGE DES IUTS
 else {
-    $request = $db->query('SELECT * FROM iut');
+    $request = $db->query('SELECT * FROM iut ORDER BY score DESC');
     try {
       $iuts = array();
       while ($data = $request->fetch(PDO::FETCH_ASSOC)) {

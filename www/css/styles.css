@@ -48,6 +48,42 @@ ion-content.landing {
 }
 
 /* ----------------------------------------------------------*/
+/* -------------------- ABOUT PAGE --------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.about {
+    background-color: #f0c330;
+}
+.about .fa {
+    font-size: 2.5em;
+    color: #35495d;
+    margin: 15px;
+}
+.about .content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 30px;
+}
+.about h1, .about h2 {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #e54d42;
+    text-shadow: 1px 1px 1px #0f0f0f;
+}
+.about h1 {
+    font-size: 2.2em;
+}
+.about h2 {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+.about p {
+    text-align: justify;
+}
+
+/* ----------------------------------------------------------*/
 /* -------------------- REGISTER PAGE ------------------------*/
 /* ----------------------------------------------------------*/
 ion-content.register {
@@ -231,12 +267,19 @@ ion-content.questions {
 /* ----------------------------------------------------------*/
 /* -------------------- RESULT PAGE -------------------------*/
 /* ----------------------------------------------------------*/
-ion-content.results {
+ion-content.result {
     background-color: #f0c330;
 }
-.results h1 {
+.result h1 {
     text-transform: uppercase;
     font-family: 'Montserrat';
     text-align: center;
     font-weight: bold;
+}
+
+/* ----------------------------------------------------------*/
+/* -------------------- RESULTS PAGE -------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.results {
+    background-color: #f0c330;
 }
