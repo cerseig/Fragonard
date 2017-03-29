@@ -12,8 +12,6 @@ angular.module('starter.controllers', [])
       url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
   }).then(function successCallback(response){
       $scope.iuts = response.data;
-  }, function myError(response){
-      console.log(response.data, response.status);
   });
   // Fin formulaire inscription
 
@@ -27,7 +25,6 @@ angular.module('starter.controllers', [])
           method: 'GET',
           url: 'http://localhost:8888/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
       }).then(function successCallback(response){
-          //si l'utilisateur n'est pas déjà pris
           if (response.data == "" || response.data == null){
             userLogin = $scope.userLogin;
             userIut   = $scope.userIut;
@@ -36,8 +33,6 @@ angular.module('starter.controllers', [])
           else {
             $scope.error = response.data;
           }
-      }, function myError(response){
-          console.log(response.data, response.status);
       });
     }
   }//Fin Formulaire process
@@ -77,7 +72,7 @@ angular.module('starter.controllers', [])
 })//Fin affichage niveaux
 
 //Début QuestionCtrl
-.controller('QuestionCtrl', function($scope, $http, $stateParams) {
+.controller('QuestionCtrl', function($scope, $http, $stateParams, $timeout) {
   var categoryId, levelId, QuestionId, AnswerId, questions = [], scores = 0, questionsLength;
   levelId = $stateParams.levelId;
   categoryId = $stateParams.categoryId;
@@ -98,6 +93,7 @@ angular.module('starter.controllers', [])
 
     //Gets the next question
     $scope.getNextQuestion = function(id){
+      $scope.correct = ""; //On vide le scope correct
       id = Number(id);
       questionId = id + 1;
       if (questionId < questionLength) {
@@ -129,12 +125,13 @@ angular.module('starter.controllers', [])
     //Checks if the selected answer is the right one
     $scope.checkAnswer = function (correct, id) {
       if (correct == 1) {
+           $scope.correct = "fa fa-check";
           $timeout(function () {
               $scope.getNextQuestion(questionId);
-              animator.start();
           }, 1000);
       }
       else {
+         $scope.correct = "fa fa-times";
         $timeout(function () {
             $scope.getNextQuestion(questionId);
         }, 1000);
@@ -143,6 +140,7 @@ angular.module('starter.controllers', [])
     }
     $scope.stockScores = function(correct){
       scores += Number(levelId * correct);
+      console.log(scores);
     }
 })
 //Fin Question Controller
