@@ -1,7 +1,13 @@
 <ion-view view-title="Résultat">
   <ion-content class="result" ng-controller="ResultCtrl">
     <h1>Votre score</h1>
-        <h2>{{user.login}} : {{user.score}}/10</h2>
-    <a href="#/app/results">Suivant</a>
+        <h2>{{user.login}} : {{user.score}}pts/10pts</h2>
+        <div class="socialnetwork">
+            <div class="round"><a href="#"><i class="fa fa-facebook"></i></a></div>
+            <div class="round"><a href="#"><i class="fa fa-twitter"></i></a></div>
+        </div>
+        <!-- <a class="facebookShare" data-url='http://google.com' data-shares='shares'><i class="fa fa-facebook"></i></a
+        <a data-lang="en" data-count='horizontal' data-url='http://google.com' data-via='notsosleepy' data-size="medium" data-text='Testing Twitter Share'><i class="fa fa-twitter"></i></a> -->
+    <a href="#/app/results"><button>Suivant</button></a>
   </ion-content>
 </ion-view>
