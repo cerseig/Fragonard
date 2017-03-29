@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
   var userLogin = "", userIut;
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php'
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
   }).then(function successCallback(response){
       $scope.iuts = response.data;
   }, function myError(response){
@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
     else {
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
       }).then(function successCallback(response){
           //si l'utilisateur n'est pas déjà pris
           if (response.data == "" || response.data == null){
@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
   //Displays all the categories
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?user='
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?user='
   }).then(function successCallback(response){
       $scope.categories = response.data;
   }, function myError(response){
@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
   var categoryId = $stateParams.categoryId;
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
   }).then(function successCallback(response){
       $scope.levels = response.data;
   }, function myError(response){
@@ -96,7 +96,7 @@ angular.module('starter.controllers', [])
     //Gets the first question
     $http({
         method: 'GET',
-        url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
     }).then(function successCallback(response){
         $scope.question = response.data;
         questionId = $scope.question.id;
@@ -116,7 +116,7 @@ angular.module('starter.controllers', [])
         //Gets the questionId
         $http({
             method: 'GET',
-            url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
+            url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
         }).then(function successCallback(response){
             $scope.question = response.data;
             $scope.getAnswers(questionId);
@@ -133,7 +133,7 @@ angular.module('starter.controllers', [])
     $scope.getAnswers = function (questionId){
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?question='+questionId
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?question='+questionId
       }).then(function successCallback(response){
           $scope.answers = response.data;
       }, function myError(response){
@@ -172,7 +172,7 @@ console.log(scores);
 
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php?score='+scores+'&user='+userLogin
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?score='+scores+'&user='+userLogin
   }).then(function successCallback(response){
       $scope.user = response.data;
   }, function myError(response){
@@ -186,7 +186,7 @@ console.log(scores);
   var iutScore;
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/MMI/ionic/quizz-mmi/www/process/api.php'
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
   }).then(function successCallback(response){
       $scope.iuts = response.data;
   }, function myError(response){
