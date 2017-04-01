@@ -205,7 +205,6 @@ angular.module('starter.controllers', [])
           console.log(response.data, response.status);
       });
     }
-
 })
 //Fin ResultsCtrl
 ;
