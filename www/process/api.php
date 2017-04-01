@@ -14,8 +14,7 @@ if(isset($_GET['score']) && (isset($_GET['user'])) ) {
 
   //Affiche le score perso de l'utilisateur
     $request=$db->prepare('SELECT * FROM user WHERE login=:login');
-    $request->bindValue(':login', $_GET['user']);
-    $request->execute();
+    $request->execute([':login' => $_GET['user']]);
 
     try {
       $user = array();
@@ -35,8 +34,7 @@ if(isset($_GET['score']) && (isset($_GET['user'])) ) {
 
     //Récupère les infos de l'IUT
       $request=$db->prepare('SELECT * FROM iut WHERE id=:id');
-      $request->bindValue(':id', $iut_id);
-      $request->execute();
+      $request->execute([':id' => $iut_id]);
 
       try {
         $user = array();
@@ -60,7 +58,9 @@ if(isset($_GET['score']) && (isset($_GET['user'])) ) {
 
 //SÉLECTION DES QUESTIONS AU CAS PAR CAS
 else if (isset($_GET['level']) && isset($_GET['category']) && isset($_GET['question'])) {
-  $request = $db->query('SELECT * FROM question WHERE id ='.$_GET['question'].' AND category_id = '.$_GET['category'].' AND level_id ='.$_GET['level'].' LIMIT 1');
+  $request = $db->prepare('SELECT * FROM question WHERE id = :id AND category_id = :category AND level_id = :level LIMIT 1');
+  $request->execute([':id' => $_GET['question'], ':category' => $_GET['category'], ':level' => $_GET['level']]);
+
   try {
     $question = array();
     while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
@@ -75,7 +75,8 @@ else if (isset($_GET['level']) && isset($_GET['category']) && isset($_GET['quest
 
 //SÉLECTION DES RÉPONSES
 else if (isset($_GET['question'])) {
-  $request = $db->query('SELECT * FROM response WHERE question_id ='.$_GET['question']);
+  $request = $db->prepare('SELECT * FROM response WHERE question_id = :question');
+  $request->execute([':question' => $_GET['question']]);
   try {
     $answers = array();
     while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
@@ -90,7 +91,8 @@ else if (isset($_GET['question'])) {
 
 //SÉLECTION DE LA PREMIÈRE QUESTION SI CHOIX CATÉGORIE + NIVEAU
 else if (isset($_GET['level']) && isset($_GET['category'])) {
-  $request = $db->query('SELECT * FROM question WHERE category_id = '.$_GET['category'].' AND level_id ='.$_GET['level'].' LIMIT 1');
+  $request = $db->prepare('SELECT * FROM question WHERE category_id = :category AND level_id = :level LIMIT 1');
+  $request->execute([':level' => $_GET['level'], ':category' => $_GET['category']]);
   try {
     $question = array();
     while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
@@ -117,6 +119,8 @@ else if (isset($_GET['category'])){
   }
   echo json_encode($levels);
 }
+
+//SÉLECTION DE LA CATÉGORIE
 else if (isset($_GET['user'])){
     $request = $db->query('SELECT * FROM category');
     try {
@@ -156,10 +160,10 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
     }
 }
 
-//AFFICHAGE DE L'IUT DE L'USER
-else if (isset($_GET['iut'])){
-  $request = $db->prepare('SELECT * FROM iut WHERE id = :id');
-  $request->bindValue(':iut',  $_GET['iut']);
+//AFFICHAGE DES SCORES DE CHAQUE USER/IUT
+else if (isset($_GET['iut_id'])){
+  $request = $db->prepare('SELECT * FROM user WHERE iut_id = :iut ORDER BY score DESC');
+  $request->execute([':iut' =>  $_GET['iut_id']]);
 
   try {
     $iut = array();
@@ -170,8 +174,24 @@ else if (isset($_GET['iut'])){
   catch (PDOException $e){
     echo $e->getMessage();
   }
+  echo json_encode($iut);
+}
+
+//AFFICHAGE D'UN IUT
+else if (isset($_GET['iut'])){
+  $request = $db->prepare('SELECT * FROM iut WHERE id = :id');
+  $request->execute([':id' => $_GET['iut']]);
+
+  try {
+    while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
+      $userIut = $data;
+    }
+  }
+  catch (PDOException $e){
+    echo $e->getMessage();
+  }
   echo json_encode($userIut);
-  var_dump($iut);}
+}
 
 //AFFICHAGE DES IUTS
 else {
