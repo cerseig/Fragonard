@@ -1,0 +1,12 @@
+<ion-view view-title="Scores de l'IUT">
+  <ion-content class="results" ng-controller="ResultsCtrl">
+    <h1>Score de l'{{iut.name}}</h1>
+    <ion-list>
+        <ion-item ng-repeat="user in users">
+            <h2>{{user.login}}</h2>
+            <h3>{{user.score}}pts</h3>
+        </ion-item>
+    </ion-list>
+    <h3 ng-if="error">{{error}}</h3>
+  </ion-content>
+</ion-view>

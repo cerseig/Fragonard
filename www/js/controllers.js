@@ -206,6 +206,45 @@ angular.module('starter.controllers', [])
       });
     }
 
+  //Si l'utilisateur choisit un IUT, va à la page qui affiche tous les scores de l'IUT choisit
+  $scope.getIUTScore = function (iut){
+    $state.go('app.scores', {iut : iut});
+  }
+
 })
 //Fin ResultsCtrl
+
+//Début ScoresCtrl
+.controller('ScoresCtrl', function($scope, $http, $state, $location, $stateParams){
+
+  var iut=$stateParams.iut;
+  console.log(iut);
+
+  //Affiche l'IUT choisi
+  $http({
+      method: 'GET',
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?iut='+iut
+  }).then(function successCallback(response){
+      $scope.iut = response.data;
+  }, function myError(response){
+      console.log(response.data, response.status);
+  });
+
+  //Affiche les scores de l'IUT choisi
+    $http({
+        method: 'GET',
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?iut_id='+iut
+    }).then(function successCallback(response){
+        if (response.data[0] == null){
+          $scope.error="Aucun utilisateur n'a joué pour cet IUT."
+        }
+        else {
+          $scope.users = response.data;
+        }
+    }, function myError(response){
+        console.log(response.data, response.status);
+    });
+
+})
+//Fin ScoresCtrl
 ;

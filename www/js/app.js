@@ -70,6 +70,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directive', 
     templateUrl: 'templates/results.html',
     controller: 'ResultsCtrl'
     })
+    .state('app.scores', {
+    url: '/scores/:iut',
+    templateUrl: 'templates/scores.html',
+    controller: 'ScoresCtrl'
+    })
     ;
 
   // if none of the above states are matched, use this as the fallback
