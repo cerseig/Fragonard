@@ -96,7 +96,7 @@ angular.module('starter.controllers', [])
         $scope.question = response.data;
         questionId = $scope.question.id;
         questionLength = Number(questionId);
-        questionLength +=9; //Car 10 questions max / catégorie & / level
+        questionLength +=10; //Car 10 questions max / catégorie & / level
         $scope.getAnswers(questionId);
     }, function myError(response){
         console.log(response.data, response.status);

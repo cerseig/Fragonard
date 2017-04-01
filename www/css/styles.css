@@ -288,6 +288,7 @@ ion-content.questions {
 /* ----------------------------------------------------------*/
 ion-content.result {
     background-color: #f0c330;
+    text-align: center;
 }
 .result h1 {
     text-transform: uppercase;
@@ -298,29 +299,40 @@ ion-content.result {
     color: #e54d42;
     text-shadow: 1px 1px 1px #0f0f0f;
 }
+.result h2, .result h3 {
+    font-family: 'Montserrat';
+}
+.result h2 span {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.6em;
+}
+.result h3 span {
+    font-weight: bold;
+    font-size: 5em;
+    color: #e54d42;
+    text-shadow: 1px 1px 1px #0f0f0f;
+}
 .result .socialnetwork {
     position: absolute;
     left: 50%;
-    transform: translate(-50%);
-    width: auto;
-    height: auto;
+    transform: translateX(-50%);
+    top: 40%;
 }
 .result .socialnetwork .round {
     background-color: #35495d;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     position: relative;
     margin: 20px 0;
 }
-.result .socialnetwork a {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
 .result .socialnetwork .fa {
     color: #fefefe;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     font-size: 45px;
 }
 .result button {
