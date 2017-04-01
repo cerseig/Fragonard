@@ -1,6 +1,20 @@
 <ion-view view-title="Résultat">
   <ion-content class="results" ng-controller="ResultsCtrl">
     <h1>Score des IUTs</h1>
+    <ng-map default-style="true" center="[48.840119174874026, 2.5862503051757812]">
+      <div ng-repeat="iut in iuts">
+        <marker id="iut{{iut.id}}" position="{{iut.coordinates}}" title="salut">
+        </marker>
+        <info-window id="info" visible-on-marker="iut{{iut.id}}">
+          <div ng-non-bindable>
+            <div id="bodyContent">
+              <card title="{{iut.name}}">
+              </card>
+            </div>
+          </div>
+        </info-window>
+      </div>
+    </ng-map>
     <ion-list>
         <ion-item ng-repeat="iut in iuts">
             <h2>{{iut.name}}</h2>
