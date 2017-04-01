@@ -174,13 +174,13 @@ angular.module('starter.controllers', [])
   });
 
   $scope.getIUTResults = function (iut){
-    $state.go('app.result', {iut : iut});
+    $state.go('app.results', {iut : iut});
   }
 })
 //Fin ResultCtrl
 
 //Début ResultsCtrl
-.controller('ResultsCtrl', function($scope, $http, $state, $location){
+.controller('ResultsCtrl', function($scope, $http, $state, $location, $stateParams){
   var iutScore;
   var iut=$stateParams.iut;
 
@@ -194,7 +194,7 @@ angular.module('starter.controllers', [])
         console.log(response.data, response.status);
     });
 
-  //Si l'user vient de jouer sa partie
+  //Si l'user vient de jouer sa partie il verra son IUT affiché sur la page Results
     if (iut != null){
       $http({
           method: 'GET',

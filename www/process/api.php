@@ -145,20 +145,19 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
           $request->bindValue(':score',  0);
           $request->bindValue(':iut',  $_GET['iut']);
           $request->execute();
-          echo "";
         }
         catch (PDOException $e){
-          echo $e->getMessage();
+          // echo $e->getMessage();
         }
       }
     }
     catch (PDOException $e){
-      echo $e->getMessage();
+      // echo $e->getMessage();
     }
 }
 
 //AFFICHAGE DE L'IUT DE L'USER
-if (isset($_GET['iut'])){
+else if (isset($_GET['iut'])){
   $request = $db->prepare('SELECT * FROM iut WHERE id = :id');
   $request->bindValue(':iut',  $_GET['iut']);
 
