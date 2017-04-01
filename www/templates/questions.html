@@ -4,7 +4,7 @@
       <ion-item>
         <h2>{{question.name}}</h2>
         {{question.img}}
-        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer" ng-class="{{class}}">
+        <ion-item ng-repeat="answer in answers" ng-click="checkAnswer(answer.correct, question.id)" class="answer" ng-model="result" ng-class="{'fail': result, 'success': result}">
           <div class="break">{{answer.name}}</div>
           {{class}}
           {{answer.img}}

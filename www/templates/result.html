@@ -1,11 +1,13 @@
 <ion-view view-title="Résultat">
-  <ion-content class="resultat" ng-controller="RegisterCtrl">
-    <h1>Les résultats</h1>
-    <ion-list>
-        <ion-item ng-repeat="iut in iuts">
-            {{iut.name}}
-            {{iut.score}}
-        </ion-item>
-    </ion-list>
+  <ion-content class="result" ng-controller="ResultCtrl">
+    <h1>Votre score</h1>
+        <h2>{{user.login}} : {{user.score}}pts/10pts</h2>
+        <div class="socialnetwork">
+            <div class="round"><a href="#"><i class="fa fa-facebook"></i></a></div>
+            <div class="round"><a href="#"><i class="fa fa-twitter"></i></a></div>
+        </div>
+        <!-- <a class="facebookShare" data-url='http://google.com' data-shares='shares'><i class="fa fa-facebook"></i></a
+        <a data-lang="en" data-count='horizontal' data-url='http://google.com' data-via='notsosleepy' data-size="medium" data-text='Testing Twitter Share'><i class="fa fa-twitter"></i></a> -->
+    <button ng-click="getIUTResults(user.iut_id)">Suivant</button>
   </ion-content>
 </ion-view>

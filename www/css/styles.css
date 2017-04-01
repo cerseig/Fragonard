@@ -7,12 +7,6 @@ html, body {
     width: 100%;
     height: 100%;
 }
-.success {
-    background-color: green;
-}
-.fail {
-    background-color: red;
-}
 /* ----------------------------------------------------------*/
 /* -------------------- LANDING PAGE ------------------------*/
 /* ----------------------------------------------------------*/
@@ -51,6 +45,42 @@ ion-content.landing {
 .landing button:hover, .landing button:active {
     background-color: #fefefe;
     color: black;
+}
+
+/* ----------------------------------------------------------*/
+/* -------------------- ABOUT PAGE --------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.about {
+    background-color: #f0c330;
+}
+.about .fa {
+    font-size: 2.5em;
+    color: #35495d;
+    margin: 15px;
+}
+.about .content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 30px;
+}
+.about h1, .about h2 {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #e54d42;
+    text-shadow: 1px 1px 1px #0f0f0f;
+}
+.about h1 {
+    font-size: 2.2em;
+}
+.about h2 {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+.about p {
+    text-align: justify;
 }
 
 /* ----------------------------------------------------------*/
@@ -251,4 +281,95 @@ ion-content.questions {
 .questions .fa-check {
   color:#39ca74;
   transition: all .3s ease-out;
+
+}
+/* ----------------------------------------------------------*/
+/* -------------------- RESULT PAGE -------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.result {
+    background-color: #f0c330;
+}
+.result h1 {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    text-align: center;
+    font-weight: bold;
+    margin: 30px 0;
+    color: #e54d42;
+    text-shadow: 1px 1px 1px #0f0f0f;
+}
+.result .socialnetwork {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: auto;
+    height: auto;
+}
+.result .socialnetwork .round {
+    background-color: #35495d;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    margin: 20px 0;
+}
+.result .socialnetwork a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.result .socialnetwork .fa {
+    color: #fefefe;
+    font-size: 45px;
+}
+.result button {
+    background: none;
+    border: none;
+    border: 1px solid #35495d;
+    color: #35495d;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 20px 60px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+}
+.result button:hover, .result button:active {
+    background-color: #35495d;
+    color: #fefefe;
+}
+
+/* ----------------------------------------------------------*/
+/* -------------------- RESULTS PAGE -------------------------*/
+/* ----------------------------------------------------------*/
+ion-content.results {
+    background-color: #e54d42;
+}
+.results h1 {
+    margin: 30px 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #f0c330;
+    text-shadow: 1px 1px 1px #0f0f0f;
+}
+.results ion-item {
+    background-color: #35495d;
+    border: none;
+    font-family: 'Lato';
+}
+.results ion-item h2, .results ion-item h3 {
+    color: #cecece;
+    font-size: 18px;
+}
+.results ion-item h3 {
+    font-weight: bold;
+    color: #fefefe;
 }
