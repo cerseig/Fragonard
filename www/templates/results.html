@@ -1,20 +1,40 @@
 <ion-view view-title="Résultat">
   <ion-content class="results" ng-controller="ResultsCtrl">
     <h1>Score des IUTs</h1>
-    <ng-map default-style="true" center="[48.840119174874026, 2.5862503051757812]">
+    <!-- <div ng-controller="MapCtrl as vm">
+    <ng-map center="[48.8370221, 2.5847406999999976]" on-center-changed="centerCustomMarker()">
+         <div ng-repeat="iut in iuts">
+           <marker id="iut{{iut.id}}" position="{{iut.coordinates}}" on-click="map.showInfoWindow('info')"></marker>
+           <info-window id="info" visible-on-marker="iut">
+             <div ng-non-bindale>
+               <div id="bodyContent">
+                 <card title="title">
+                 </card>
+               </div>
+             </div>
+           </info-window>
+        </div>
+     </ng-map>
+ </div> -->
+
+
+    <div ng-controller="MapCtrl as vm">
+    <ng-map  center="[48.8370221, 2.5847406999999976]">
       <div ng-repeat="iut in iuts">
-        <marker id="iut{{iut.id}}" position="{{iut.coordinates}}" title="salut">
+        <marker id="iut{{iut.id}}" position="{{iut.coordinates}}" on-click="map.showInfoWindow('info')">
         </marker>
         <info-window id="info" visible-on-marker="iut{{iut.id}}">
           <div ng-non-bindable>
             <div id="bodyContent">
-              <card title="{{iut.name}}">
+              <card title="title">
               </card>
             </div>
           </div>
         </info-window>
       </div>
     </ng-map>
+</div>
+
     <ion-list>
         <ion-item ng-repeat="iut in iuts" ng-click="getIUTScore(iut.id)">
             <h2>{{iut.name}}</h2>
