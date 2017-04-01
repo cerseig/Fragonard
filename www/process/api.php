@@ -145,15 +145,14 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
           $request->bindValue(':score',  0);
           $request->bindValue(':iut',  $_GET['iut']);
           $request->execute();
-          echo "";
         }
         catch (PDOException $e){
-          echo $e->getMessage();
+          // echo $e->getMessage();
         }
       }
     }
     catch (PDOException $e){
-      echo $e->getMessage();
+      // echo $e->getMessage();
     }
 }
 
