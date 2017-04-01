@@ -47,21 +47,12 @@
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
 
-         document.getElementById('shareBtn').onclick = function() {
-          FB.ui({
-            method: 'share',
-            display: 'popup',
-            href: 'https://developers.facebook.com/docs/',
-            quote :'Coucou',
-          }, function(response){});
-        }
       </script>
 
     <ion-pane>
       <ion-nav-view></ion-nav-view>
       <ion-content class="landing">
         <a href="#/app/about"><i class="fa fa-question-circle"></i></a>
-        <a href="#/app/results">score iut</a>
         <img src="img/logo.png" alt="Logo de MMI'zz">
         <a href="#/app/register"><button>Jouer !</button></a>
       </ion-content>

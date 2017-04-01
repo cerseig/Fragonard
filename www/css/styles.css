@@ -264,6 +264,25 @@ ion-content.questions {
     top: 25%;
 }
 
+.questions .check {
+  position: absolute;
+  left:50%;
+  top:90%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  text-align: center;
+}
+
+.questions .fa-times {
+  color:#e54d42;
+  transition: all .3s ease-out;
+}
+
+.questions .fa-check {
+  color:#39ca74;
+  transition: all .3s ease-out;
+
+}
 /* ----------------------------------------------------------*/
 /* -------------------- RESULT PAGE -------------------------*/
 /* ----------------------------------------------------------*/
