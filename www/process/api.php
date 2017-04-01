@@ -158,21 +158,21 @@ else if (isset($_GET['register']) && isset($_GET['iut'])) {
 }
 
 //AFFICHAGE DE L'IUT DE L'USER
-if (isset($_GET['iut'])){
+else if (isset($_GET['iut'])){
   $request = $db->prepare('SELECT * FROM iut WHERE id = :id');
   $request->bindValue(':iut',  $_GET['iut']);
 
   try {
-    $userIut = array();
+    $iut = array();
     while ($data = $request->fetch(PDO::FETCH_ASSOC)) {
-      $userIut[] = $data;
+      $iut[] = $data;
     }
   }
   catch (PDOException $e){
     echo $e->getMessage();
   }
   echo json_encode($userIut);
-  var_dump($userIut);}
+  var_dump($iut);}
 
 //AFFICHAGE DES IUTS
 else {
