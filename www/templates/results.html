@@ -17,23 +17,19 @@
      </ng-map>
  </div> -->
 
-
-    <div ng-controller="MapCtrl as vm">
-    <ng-map  center="[48.8370221, 2.5847406999999976]">
-      <div ng-repeat="iut in iuts">
-        <marker id="iut{{iut.id}}" position="{{iut.coordinates}}" on-click="map.showInfoWindow('info')">
+<!-- Début Map  -->
+    <ng-map default-style="true" center="{{userIut.coordinates}}">
+        <marker ng-repeat ="iut in iuts" id="iut{{iut.id}}" position="{{iut.coordinates}}" on-click="map.showInfoWindow(info{{iut.id}})">
         </marker>
-        <info-window id="info" visible-on-marker="iut{{iut.id}}">
+        <info-window ng-repeat ="iut in iuts" id="info{{iut.id}}" visible-on-marker="iut{{iut.id}}">
           <div ng-non-bindable>
-            <div id="bodyContent">
-              <card title="title">
-              </card>
-            </div>
+            <h1>{{iut.name}}</h1>
+            <h2>{{iut.score}} pts</h2>
           </div>
         </info-window>
-      </div>
+      <!-- </div> -->
     </ng-map>
-</div>
+<!-- Fin Map  -->
 
     <ion-list>
         <ion-item ng-repeat="iut in iuts" ng-click="getIUTScore(iut.id)">

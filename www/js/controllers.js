@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
   var userLogin = "", userIut;
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php'
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
   }).then(function successCallback(response){
       $scope.iuts = response.data;
   });
@@ -19,23 +19,24 @@ angular.module('starter.controllers', [])
 
   // Process formulaire inscription
   $scope.registerProcess = function (){
+    //Si l'un des champs n'est pas rempli
     if ($scope.userLogin == null || $scope.userIut == null){
-      $scope.error="Veuillez remplir tous les champs."
+      $scope.error="Veuillez remplir tous les champs." //On affiche le message d'erreur
     }
     else {
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?register='+$scope.userLogin+'&iut='+$scope.userIut
       }).then(function successCallback(response){
           if (response.data == "" || response.data == null){
             userLogin = $scope.userLogin;
             userIut   = $scope.userIut;
-            console.log(userLogin);
-            console.log(userIut);
+            //On dirige l'utilisateur vers le choix des catégories
             $state.go('app.categories', {userLogin : userLogin, userIut : userIut});
           }
           else {
             $scope.error = response.data;
+            // Si l'user est déjà existant on affiche le message d'erreur stocké dans l'API.
           }
       });
     }
@@ -44,20 +45,19 @@ angular.module('starter.controllers', [])
 
 //Début CategoriesCtrl
 .controller('CategoriesCtrl', function($scope, $http, $state, $location, $stateParams) {
-    userLogin=$stateParams.userLogin;
-    console.log($stateParams.userLogin);
-    console.log($stateParams.userLogin);
-    console.log(userLogin);
-  //Displays all the categories
+  var userLogin;
+  userLogin=$stateParams.userLogin;
+
+  //Affiche toutes les catégories
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?user='
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?user='
   }).then(function successCallback(response){
       $scope.categories = response.data;
   }, function myError(response){
       console.log(response.data, response.status);
   });
-  //Goes to the template to select levels
+  //Va au template pour choisir les niveaux
   $scope.getLevels = function(id) {
     $state.go('app.levels', {userLogin : userLogin, categoryId : id}); //Envoyer l'id au controller & de app.levels
   }
@@ -65,17 +65,20 @@ angular.module('starter.controllers', [])
 
 //Afficher les niveaux
 .controller('LevelsCtrl', function($scope, $http, $state, $stateParams, $timeout) {
-    var userLogin=$stateParams.userLogin;
-    console.log(userLogin);
-  var categoryId = $stateParams.categoryId;
+  var userLogin, categoryId;
+  userLogin=$stateParams.userLogin;
+  categoryId = $stateParams.categoryId;
+
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+$stateParams.categoryId
   }).then(function successCallback(response){
       $scope.levels = response.data;
   }, function myError(response){
       console.log(response.data, response.status);
   });
+
+  //Va au template des Questions
   $scope.getQuestions = function(id) {
     $state.go('app.questions', {userLogin : userLogin, levelId : id, categoryId : categoryId});
   }
@@ -88,10 +91,10 @@ angular.module('starter.controllers', [])
   levelId = $stateParams.levelId;
   categoryId = $stateParams.categoryId;
 
-    //Gets the first question
+    //Affiche la première question
     $http({
         method: 'GET',
-        url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId
     }).then(function successCallback(response){
         $scope.question = response.data;
         questionId = $scope.question.id;
@@ -102,17 +105,16 @@ angular.module('starter.controllers', [])
         console.log(response.data, response.status);
     });
 
-    //Gets the next question
+    //Affiche la question suivante
     $scope.getNextQuestion = function(id){
       $scope.correct = ""; //On vide le scope correct
-      id = Number(id);
-      questionId = id + 1;
+      id = Number(id); //On récupère l'ID de la question d'avant
+      questionId = id + 1; //On ajoute un pour la question suivante
       if (questionId < questionLength) {
-          console.log(userLogin);
-        //Gets the questionId
+        //Récupère la question selon son Id
         $http({
             method: 'GET',
-            url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
+            url: 'http://localhost:8888/quizz-mmi/www/process/api.php?category='+categoryId+'&level='+levelId+'&question='+questionId
         }).then(function successCallback(response){
             $scope.question = response.data;
             $scope.getAnswers(questionId);
@@ -121,15 +123,16 @@ angular.module('starter.controllers', [])
         });
       }
       else {
+          //Si fin du jeu, on va au template des résultats
             $state.go('app.result', {scores : scores, userLogin : userLogin});
       }
     }
 
-    //Gets the answer corresponding to the question
+    //Réccupère les réponses correspodant à la question
     $scope.getAnswers = function (questionId){
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?question='+questionId
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?question='+questionId
       }).then(function successCallback(response){
           $scope.answers = response.data;
       }, function myError(response){
@@ -137,36 +140,42 @@ angular.module('starter.controllers', [])
       });
     }
 
-    //Checks if the selected answer is the right one
+    //Vérifie si la réponse choisie est la bonne
     $scope.checkAnswer = function (correct, id) {
       if (correct == 1) {
+          //Si la réponse est la bonne, on affiche un "check" vert et on passe à la question suivante
            $scope.correct = "fa fa-check";
           $timeout(function () {
               $scope.getNextQuestion(questionId);
           }, 1000);
       }
       else {
+        //Si la réponse est mauvaise, on affiche une croix rouge et on passe à la question suivante
          $scope.correct = "fa fa-times";
         $timeout(function () {
             $scope.getNextQuestion(questionId);
         }, 1000);
       }
-      $scope.stockScores(correct);
+
+      $scope.stockScores(correct); //On appelle le modèle stockScores et on lui envoie "correct"
     }
     $scope.stockScores = function(correct){
       scores += Number(levelId * correct);
+      //On ajoute au score les nouveaux points et on les multiplie par le niveau de difficulté
     }
 })
 //Fin QuestionCtrl
 
 //Début ResultCtrl
 .controller('ResultCtrl', function($scope, $http, $state, $location, $stateParams){
-  var userLogin=$stateParams.userLogin;
+  var userLogin, scores;
+  userLogin=$stateParams.userLogin;
   scores = $stateParams.scores;
 
+  //Envoie le score de l'user à son "profil" et à son IUT puis affiche son score perso
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?score='+scores+'&user='+userLogin
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?score='+scores+'&user='+userLogin
   }).then(function successCallback(response){
       $scope.user = response.data;
   }, function myError(response){
@@ -174,6 +183,7 @@ angular.module('starter.controllers', [])
   });
 
   $scope.getIUTResults = function (iut){
+    //Va au template results qui affiche les résultats de tous les IUT et envoie l'id de l'iut de l'user
     $state.go('app.results', {iut : iut});
   }
 })
@@ -187,7 +197,7 @@ angular.module('starter.controllers', [])
   //Affiche tous les IUT avec leurs scores
     $http({
         method: 'GET',
-        url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php'
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php'
     }).then(function successCallback(response){
         $scope.iuts = response.data;
     }, function myError(response){
@@ -198,13 +208,15 @@ angular.module('starter.controllers', [])
     if (iut != null){
       $http({
           method: 'GET',
-          url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?iut='+iut
+          url: 'http://localhost:8888/quizz-mmi/www/process/api.php?iut='+iut
       }).then(function successCallback(response){
           $scope.userIut = response.data;
       }, function myError(response){
           console.log(response.data, response.status);
       });
     }
+
+    console.log($scope.userIut);
 
   //Si l'utilisateur choisit un IUT, va à la page qui affiche tous les scores de l'IUT choisit
   $scope.getIUTScore = function (iut){
@@ -218,12 +230,12 @@ angular.module('starter.controllers', [])
 .controller('ScoresCtrl', function($scope, $http, $state, $location, $stateParams){
 
   var iut=$stateParams.iut;
-  console.log(iut);
+  console.log("iut" + iut);
 
   //Affiche l'IUT choisi
   $http({
       method: 'GET',
-      url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?iut='+iut
+      url: 'http://localhost:8888/quizz-mmi/www/process/api.php?iut='+iut
   }).then(function successCallback(response){
       $scope.iut = response.data;
   }, function myError(response){
@@ -233,7 +245,7 @@ angular.module('starter.controllers', [])
   //Affiche les scores de l'IUT choisi
     $http({
         method: 'GET',
-        url: 'http://localhost/projets-scolaires/mmi/ionic/quizz-mmi/www/process/api.php?iut_id='+iut
+        url: 'http://localhost:8888/quizz-mmi/www/process/api.php?iut_id='+iut
     }).then(function successCallback(response){
         if (response.data[0] == null){
           $scope.error="Aucun utilisateur n'a joué pour cet IUT."
