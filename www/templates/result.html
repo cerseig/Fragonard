@@ -2,7 +2,7 @@
   <ion-content class="result" ng-controller="ResultCtrl">
     <h1>Votre score</h1>
         <h2><span>Joueur :</span> {{user.login}}</h2>
-        <h3><span>{{user.score}}<small>pts</span></small>/10<small>pts</small></h3>
+        <h3><span>{{user.score}}<small>pts</span></h3>
         <div class="socialnetwork">
             <div class="facebook">
                 <div class="fb-share-button" data-href="http://circegrand.fr/etude/mmi/mmizz/" data-layout="button_count" data-size="large" data-mobile-iframe="true">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="twitter">
-                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{user.login}} a un score de {{user.score}}pts sur 10pts. Rejoignez nous sur : http://circegrand.fr/etude/mmi/mmizz/">
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{user.login}} a un score de {{user.score}}pts. Rejoignez nous sur : http://circegrand.fr/etude/mmi/mmizz/">
                     <div class="round">
                         <i class="fa fa-twitter"></i>
                     </div>
