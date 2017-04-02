@@ -4,6 +4,7 @@
         <h2><span>Joueur :</span> {{user.login}}</h2>
         <h3><span>{{user.score}}<small>pts</span></h3>
         <div class="socialnetwork">
+            <!-- Bouton de partage vers Facebook -->
             <div class="facebook">
                 <div class="fb-share-button" data-href="http://circegrand.fr/etude/mmi/mmizz/" data-layout="button_count" data-size="large" data-mobile-iframe="true">
                     <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcircegrand.fr%2Fetude%2Fmmi%2Fmmizz%2F&amp;src=sdkpreparse">
@@ -13,6 +14,7 @@
                     </a>
                 </div>
             </div>
+            <!-- Bouton de partage vers Twitter -->
             <div class="twitter">
                 <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{user.login}} a un score de {{user.score}}pts. Rejoignez nous sur : http://circegrand.fr/etude/mmi/mmizz/">
                     <div class="round">
